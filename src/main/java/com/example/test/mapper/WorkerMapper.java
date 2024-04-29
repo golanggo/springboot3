@@ -11,6 +11,8 @@ public interface WorkerMapper {
 
     Worker selectByPrimaryKey(Integer id);
 
+    Worker find(String mobile, String password);
+
     int updateByPrimaryKeySelective(Worker record);
 
     int updateByPrimaryKey(Worker record);

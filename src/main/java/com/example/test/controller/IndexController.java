@@ -4,9 +4,10 @@ import com.example.test.service.ProductService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 @RestController
 public class IndexController {
@@ -20,18 +21,30 @@ public class IndexController {
     }
 
 
-    @GetMapping(value = "/index")
-    @ResponseBody
-    public Object Index() {
-        logger.debug("Hello world.");
-        return "Hello World!";
+    @GetMapping(value = "/")
+    public Object index() throws UnknownHostException {
+        try {
+            InetAddress localHost = InetAddress.getLocalHost();
+            String hostname = localHost.getHostName();
+            return hostname + " \r\n Hello World!";
+        } catch (Exception $e) {
+            return "hostname is empty \r\n Hello World!";
+        }
     }
 
-    @GetMapping(value = "/admin/index")
-    @ResponseBody
-    public Object admin() {
-        return "admin Hello World!";
+    @GetMapping(value = "/index/{name}")
+    public Object varIndex(@PathVariable String name) {
+        return name + " Hello World!";
     }
 
+    @GetMapping(value = "/index/query")
+    public Object urlCode(String name) {
+        return name + " Hello World!";
+    }
+
+    @PostMapping(value = "/index/bodyformdata")
+    public Object body(String name) {
+        return name + " Hello World!";
+    }
 
 }

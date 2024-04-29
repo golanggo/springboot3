@@ -20,7 +20,7 @@ public class LoginController {
         this.workerService = workerService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/login")
     public Object Login(String mobile, String password) {
         boolean bl = workerService.CheckAccount(mobile, password);
         if (bl) {
