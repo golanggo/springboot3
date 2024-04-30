@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Deploy for production') {
             when {
-                branch 'production'
+                branch 'main'
             }
             steps {
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
