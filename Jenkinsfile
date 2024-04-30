@@ -22,7 +22,7 @@ pipeline {
         }
         stage('Deliver for development') {
             when {
-                branch 'development'
+                branch 'dev'
             }
             steps {
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Deploy for production') {
             when {
-                branch 'production'
+                branch 'pro'
             }
             steps {
                 input message: 'Finished using the web site? (Click "Proceed" to continue)'
